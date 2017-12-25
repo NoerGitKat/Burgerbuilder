@@ -68,7 +68,7 @@ class Burgerbuilder extends React.Component {
   };
 
   render() {
-    const { ingredients } = this.state;
+    const { ingredients, totalPrice } = this.state;
     //populates ingredients obj with boolean values
     //ex. { salad: true, meat: false }
     const disabledInfo = {
@@ -82,6 +82,7 @@ class Burgerbuilder extends React.Component {
       <Aux>
         <Burger ingredients={ingredients} />
         <BuildControls
+          totalPrice={totalPrice}
           addIngredients={this.addIngredients}
           removeIngredients={this.removeIngredients}
           disabled={disabledInfo}
