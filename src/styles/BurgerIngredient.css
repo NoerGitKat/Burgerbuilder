@@ -28,23 +28,25 @@
   box-shadow: inset -2px -3px #c9c9c9;
 }
 
-.seeds1:after {
+.seeds1::after {
   content: "";
   width: 100%;
   height: 100%;
+  display: inline-block;
   position: relative;
   background-color: white;
   left: -170%;
-  top: -260%;
+  top: -500%;
   border-radius: 40%;
   transform: rotate(60deg);
   box-shadow: inset -1px 2px #c9c9c9;
 }
 
-.seeds1:before {
+.seeds1::before {
   content: "";
   width: 100%;
   height: 100%;
+  display: inline-block;
   position: relative;
   background-color: white;
   left: 180%;
@@ -57,18 +59,20 @@
 .seeds2 {
   width: 10%;
   height: 15%;
+  display: inline-block;
   position: relative;
   background-color: white;
   left: 64%;
-  top: 50%;
+  top: 30%;
   border-radius: 40%;
   transform: rotate(10deg);
   box-shadow: inset -3px 0 #c9c9c9;
 }
 
-.seeds2:before {
+.seeds2::before {
   width: 100%;
   height: 100%;
+  display: inline-block;
   position: relative;
   background-color: white;
   left: 150%;
