@@ -9,20 +9,22 @@ const controls = [
   { label: "Meat", type: "meat" }
 ];
 
-const allControls = controls.map(control => {
+const BuildControls = ({ addIngredients, removeIngredients, disabled }) => {
   return (
-    <BuildControl
-      key={control.label}
-      label={control.label}
-      type={control.type}
-    />
+    <div className="buildControls">
+      {controls.map(control => {
+        return (
+          <BuildControl
+            key={control.label}
+            label={control.label}
+            addIngredients={() => addIngredients(control.type)}
+            removeIngredients={() => removeIngredients(control.type)}
+            disabled={disabled[control.type]}
+          />
+        );
+      })}
+    </div>
   );
-});
-
-console.log("buildcontrols", allControls);
-
-const BuildControls = () => {
-  return <div className="buildControls">{allControls}</div>;
 };
 
 export default BuildControls;
