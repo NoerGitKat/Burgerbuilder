@@ -4,6 +4,8 @@ import Aux from "../../hoc/Aux";
 import Layout from "../../components/Layout/Layout";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import Modal from "../../components/UI/Modal/Modal";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -20,7 +22,20 @@ class Burgerbuilder extends React.Component {
       cheese: 0,
       meat: 0
     },
-    totalPrice: 4
+    totalPrice: 4,
+    purchaseable: false,
+    orderMode: false
+  };
+
+  updatePurchaseState = ingredients => {
+    const sumPrice = Object.keys(ingredients)
+      .map(ingredientKey => {
+        return ingredients[ingredientKey];
+      })
+      .reduce((sum, price) => {
+        return sum + price;
+      }, 0);
+    this.setState({ purchaseable: sumPrice > 0 });
   };
 
   addIngredients = type => {
@@ -44,6 +59,7 @@ class Burgerbuilder extends React.Component {
       ingredients: updatedIngredients,
       totalPrice: newPrice
     });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   removeIngredients = type => {
@@ -65,10 +81,23 @@ class Burgerbuilder extends React.Component {
       ingredients: updatedIngredients,
       totalPrice: newPrice
     });
+    this.updatePurchaseState(updatedIngredients);
+  };
+
+  checkoutBurger = () => {
+    this.setState({ orderMode: true });
+  };
+
+  quitOrderMode = () => {
+    this.setState({ orderMode: false });
+  };
+
+  continuePurchase = () => {
+    alert("Proceeding to buy this tasty shit...");
   };
 
   render() {
-    const { ingredients, totalPrice } = this.state;
+    const { ingredients, totalPrice, purchaseable, orderMode } = this.state;
     //populates ingredients obj with boolean values
     //ex. { salad: true, meat: false }
     const disabledInfo = {
@@ -80,12 +109,22 @@ class Burgerbuilder extends React.Component {
 
     return (
       <Aux>
+        <Modal quitOrderMode={this.quitOrderMode} showOrder={orderMode}>
+          <OrderSummary
+            totalPrice={totalPrice}
+            quitOrderMode={this.quitOrderMode}
+            continuePurchase={this.continuePurchase}
+            ingredients={ingredients}
+          />
+        </Modal>
         <Burger ingredients={ingredients} />
         <BuildControls
           totalPrice={totalPrice}
           addIngredients={this.addIngredients}
           removeIngredients={this.removeIngredients}
           disabled={disabledInfo}
+          purchaseable={purchaseable}
+          checkoutBurger={this.checkoutBurger}
         />
       </Aux>
     );

@@ -13,11 +13,13 @@ const BuildControls = ({
   totalPrice,
   addIngredients,
   removeIngredients,
-  disabled
+  disabled,
+  purchaseable,
+  checkoutBurger
 }) => {
   return (
     <div className="buildControls">
-      <p>Current price: &euro; {totalPrice.toFixed(2)}</p>
+      <p>Current price: &euro;{totalPrice.toFixed(2)}</p>
       {controls.map(control => {
         return (
           <BuildControl
@@ -29,6 +31,13 @@ const BuildControls = ({
           />
         );
       })}
+      <button
+        className="orderButton"
+        onClick={checkoutBurger}
+        disabled={!purchaseable}
+      >
+        ORDER
+      </button>
     </div>
   );
 };
