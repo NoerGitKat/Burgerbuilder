@@ -1,19 +1,26 @@
 import React from "react";
 import "../../styles/Toolbar.css";
 import Logo from "../Logo/Logo";
+import NavigationItems from "./NavigationItems/NavigationItems";
 
-const Toolbar = () => {
+const Toolbar = ({ showSideDrawer, openSideDrawer }) => {
   return (
     <header className="toolbar">
-      <Logo />
-      <div>MENU</div>
+      {showSideDrawer ? null : (
+        <div
+          onClick={openSideDrawer}
+          className="sideDrawerMenu"
+          style={{ cursor: "pointer" }}
+        >
+          MENU
+        </div>
+      )}
+      <div className="noDesktop">
+        <Logo />
+      </div>
 
-      <nav>
-        <ul>
-          <li>site link</li>
-          <li>site link</li>
-          <li>site link</li>
-        </ul>
+      <nav className="noDesktop">
+        <NavigationItems />
       </nav>
     </header>
   );

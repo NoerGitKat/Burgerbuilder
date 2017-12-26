@@ -29,3 +29,9 @@
     height: 300px;
   }
 }
+
+@media (max-width: 500px) {
+  .burger {
+    padding: 4.3em 0;
+  }
+}

@@ -1,10 +1,23 @@
 .logo {
-  background-color: white;
-  padding: 8px;
-  border-radius: 20px;
-  height: 60%
+  padding: 10px;
+  border: 1px solid orange;
+  background-color: lightcoral;
+  border-radius: 50px;
+  height: 50%;
+  width: 35%;
 }
 
 .logo img {
   height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 500px) {
+  .logo {
+    height: 11%;
+    width: 30%;
+    margin: 0 auto 32px;
+    text-align: center;
+    background-color: lightcoral;
+  }
 }
